@@ -1,11 +1,12 @@
-const search=document.querySelector('.search-box').value;
+const searchBar=document.querySelector('.search-box');
+const searchBars=document.querySelector('.search-box').value;
 const btn=document.querySelector('.btn');
 const btnAdd=document.querySelector('.btn-add');
 const container=document.querySelector('.item-container');
-const itemBtn=document.querySelectorAll('.itemlist');
-const delIcon=document.querySelectorAll('.fa-times-circle');
-const itemBtnS=document.querySelector('.item-btn');
 
+btn.addEventListener('click',(e)=>{
+    e.preventDefault();
+});
 
 const itemCreate=(e)=>{
     e.preventDefault();
@@ -38,4 +39,46 @@ const itemCreate=(e)=>{
 //addbutton
 btnAdd.addEventListener('click',itemCreate);
 
+const remItem=(e)=>{
 
+    let items=e.target.parentElement;
+    e.target.classList.contains('fa-times-circle') ? container.removeChild(items.parentElement) :false;
+};
+
+container.addEventListener('click',remItem);
+
+//search bar
+
+searchBar.addEventListener('keyup',(e)=>{
+
+    const itemlist=container.querySelectorAll('.item-header');
+    
+    let txt=e.target.value.toLowerCase();
+
+    Array.from(itemlist).forEach(item=>{
+        let itemName=item.textContent.toLowerCase();
+        
+        txt.includes(itemName) ? item.parentElement.style.display='flex':item.parentElement.style.display='none';
+    })
+
+});
+
+//if statement fot the ternary operators
+
+//search
+// if(txt.includes(itemName)){
+        //     item.parentElement.style.display='flex';
+        // }else{
+        //     item.parentElement.style.display='none';
+        // }
+
+
+        //remove
+//console.log(e.target);
+    // if(e.target.classList.contains('fa-times-circle')){
+        
+    //     let items=e.target.parentElement;
+    //     container.removeChild(items.parentElement)
+    // }else{
+    //     return false;
+    // }
