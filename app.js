@@ -8,8 +8,8 @@ btn.addEventListener('click',(e)=>{
     e.preventDefault();
 });
 
-const itemCreate=(e)=>{
-    e.preventDefault();
+const itemCreate=()=>{
+    // e.preventDefault();
     
     const addInput=document.querySelector('.add-box').value;
 
@@ -32,12 +32,21 @@ const itemCreate=(e)=>{
     div.appendChild(divBtn);
 
     //append the div to the main div container
-    container.appendChild(div)
+    // container.appendChild(div);
+
+    addInput!=="" ? container.appendChild(div) : alert('input a value') 
     
 };
 
 //addbutton
-btnAdd.addEventListener('click',itemCreate);
+btnAdd.addEventListener('click',(e)=>{
+    e.preventDefault();
+
+    itemCreate();
+    // document.querySelector('.add-box').value="";
+
+    document.querySelector('.add-box').value!=="" ?document.querySelector('.add-box').value="" : false;
+});
 
 const remItem=(e)=>{
 
@@ -59,7 +68,7 @@ searchBar.addEventListener('keyup',(e)=>{
         let itemName=item.textContent.toLowerCase();
         
         txt.includes(itemName) ? item.parentElement.style.display='flex':item.parentElement.style.display='none';
-    })
+    });
 
 });
 
